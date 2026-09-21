@@ -1,0 +1,93 @@
+{{ 'beauty-home.css' | asset_url | stylesheet_tag }}
+<section class="bh-wrap"><div class="bh-feature bh-feature--{{ section.settings.layout }}" style="--bh-bg:{{ section.settings.background }}">
+<div class="bh-feature__image">
+{% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '480,800,1200,1800', sizes: '(max-width: 749px) 100vw, 60vw' }}
+{% else %}<img src="{{ section.settings.fallback | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1800" height="1200" {% if section.settings.layout == 'campaign' %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
+</div><div class="bh-feature__copy"><p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+{% if section.settings.layout == 'campaign' %}<h1>{{ section.settings.heading | escape }}</h1>{% else %}<h2>{{ section.settings.heading | escape }}</h2>{% endif %}
+<div class="bh-description">{{ section.settings.body }}</div><a class="bh-button" href="{{ section.settings.link }}">{{ section.settings.label | escape }}</a>
+</div></div></section>
+{% schema %}
+{
+  "name": "Beauty feature",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        {
+          "value": "campaign",
+          "label": "Campaign"
+        },
+        {
+          "value": "editorial",
+          "label": "Editorial"
+        },
+        {
+          "value": "spotlight",
+          "label": "Spotlight"
+        }
+      ],
+      "default": "editorial"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "fallback",
+      "label": "Bundled image filename",
+      "default": "beauty-editorial.jpg"
+    },
+    {
+      "type": "text",
+      "id": "image_alt",
+      "label": "Image description",
+      "default": "Beauty editorial photograph"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The beauty edit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Everyday, elevated."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Description",
+      "default": "<p>Discover your next beauty favourite.</p>"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Button label",
+      "default": "Discover now"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Button link"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#f5efea"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beauty feature"
+    }
+  ]
+}
+{% endschema %}

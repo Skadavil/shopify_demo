@@ -1,0 +1,17 @@
+{% assign item = closest.product %}
+<div class="bs-product-intro" {{ block.shopify_attributes }}><div class="beauty-card-brand">{{ item.vendor | link_to_vendor }}</div><h1>{{ item.title | escape }}</h1>
+{% assign summary = item.metafields.custom.summary.value %}{% if summary == blank %}{% assign summary = item.description | split: '</p>' | first | strip_html | truncate: 220 %}{% endif %}<p>{{ summary | escape }}</p>
+{% if item.has_only_default_variant %}<div class="bs-single-option">{% if item.description contains '<strong>Size:</strong>' %}<strong>{{ 'beauty_store.size' | t }}</strong> {{ item.description | split: '<strong>Size:</strong>' | last | split: '</p>' | first | strip_html | escape }}{% endif %}
+{% if item.title contains ' - ' %}<p><strong>{{ 'beauty_store.shade' | t }}</strong> {{ item.title | split: ' - ' | last | escape }}</p>{% endif %}</div>{% endif %}</div>
+{% schema %}
+{
+  "name": "Beauty product intro",
+  "tag": null,
+  "settings": [],
+  "presets": [
+    {
+      "name": "Beauty product intro"
+    }
+  ]
+}
+{% endschema %}

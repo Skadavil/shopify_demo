@@ -1,0 +1,25 @@
+
+{% assign category_image = collection.image | default: collection.products.first.featured_image %}
+<section class="bs-category bh-wrap">
+<div><p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p><h1>{{ collection.title | escape }}</h1><div>{{ collection.description }}</div>
+<nav aria-label="{{ 'beauty_store.subcategories' | t }}" class="bs-chips">{% for type in collection.all_types %}{% if type != blank %}<a href="{{ collection.url }}?filter.p.product_type={{ type | url_encode }}">{{ type | escape }}</a>{% endif %}{% endfor %}</nav></div>
+{% if category_image %}{{ category_image | image_url: width: 900 | image_tag: widths: '450,700,900', sizes: '(max-width:749px) 100vw, 40vw', loading: 'eager' }}{% endif %}
+</section>
+{% schema %}
+{
+  "name": "Beauty category header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The beauty collection"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beauty category header"
+    }
+  ]
+}
+{% endschema %}

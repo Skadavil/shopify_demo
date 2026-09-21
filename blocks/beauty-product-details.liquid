@@ -1,0 +1,38 @@
+{% assign item = closest.product %}
+<div class="bs-accordions" {{ block.shopify_attributes }}>
+<details open><summary>{{ 'beauty_store.description' | t }}</summary><div class="rte">{{ item.description }}</div></details>
+<details><summary>{{ 'beauty_store.how_to_use' | t }}</summary><div class="rte">{% if item.metafields.custom.how_to_use != blank %}{{ item.metafields.custom.how_to_use | metafield_tag }}{% else %}{{ block.settings.usage_fallback }}{% endif %}</div></details>
+<details><summary>{{ 'beauty_store.ingredients' | t }}</summary><div class="rte">{% if item.metafields.custom.ingredients != blank %}{{ item.metafields.custom.ingredients | metafield_tag }}{% else %}{{ block.settings.ingredients_fallback }}{% endif %}</div></details>
+<details><summary>{{ 'beauty_store.delivery' | t }}</summary><div class="rte">{% if shop.shipping_policy.body != blank %}{{ shop.shipping_policy.body }}{% else %}{{ block.settings.delivery_fallback }}{% endif %}{% if shop.refund_policy.url != blank %}<p><a href="{{ shop.refund_policy.url }}">{{ 'beauty_store.returns' | t }}</a></p>{% endif %}</div></details>
+</div>
+{% schema %}
+{
+  "name": "Beauty product details",
+  "tag": null,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "usage_fallback",
+      "label": "Usage when product field is empty",
+      "default": "<p>This is a fictional interview-demo product. Product-specific usage instructions have not been supplied.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "ingredients_fallback",
+      "label": "Ingredients when product field is empty",
+      "default": "<p>This is a fictional interview-demo product. No verified ingredient list is available.</p>"
+    },
+    {
+      "type": "richtext",
+      "id": "delivery_fallback",
+      "label": "Delivery when shipping policy is empty",
+      "default": "<p>This storefront is an interview demonstration. Delivery services have not been configured.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beauty product details"
+    }
+  ]
+}
+{% endschema %}

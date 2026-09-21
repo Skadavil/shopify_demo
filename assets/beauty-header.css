@@ -1,0 +1,75 @@
+
+
+  .header .header-logo [data-testid="header-logo"] {
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    font-weight: 600;
+    font-size: clamp(18px, 2.4vw, 32px);
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: anywhere;
+  }
+  .header .menu-list__link { letter-spacing: .055em; }
+  .header .header-logo { max-width: 100%; }
+  @media screen and (min-width: 1100px) {
+    .header .header__row--top { padding-block: 14px; }
+    .header .search-action:not(.search-action--hidden-on-menu) button {
+      width: 160px;
+      justify-content: space-between;
+      border-bottom: 1px solid currentColor;
+      border-radius: 0;
+      padding-inline: 0;
+      margin-inline-end: 12px;
+    }
+    .header .search-action:not(.search-action--hidden-on-menu) button > span:first-child {
+      display: inline;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+    }
+  }
+  @media screen and (max-width: 749px) {
+    .header .header-logo [data-testid="header-logo"] {
+      font-size: clamp(14px, 4vw, 20px);
+      letter-spacing: .06em;
+    }
+  }
+
+.beauty-nav { width:100%; color:#111; }
+.beauty-nav__list { list-style:none; display:flex; align-items:center; justify-content:center; gap:30px; margin:0; padding:0; }
+.beauty-nav__list > li > a,.beauty-nav summary { display:block; padding:18px 0; font-size:12px; font-weight:600; letter-spacing:.055em; text-transform:uppercase; cursor:pointer; }
+.beauty-nav summary { list-style:none; }
+.beauty-nav summary::-webkit-details-marker { display:none; }
+.beauty-nav a { color:inherit; text-decoration:none; }
+.beauty-nav a:hover { text-decoration:underline; text-underline-offset:4px; }
+.beauty-nav :focus-visible { outline:2px solid #111; outline-offset:4px; }
+.beauty-nav__sale { color:#b32959; }
+.beauty-nav__panel { position:absolute; inset-inline:0; top:100%; padding:30px max(24px,calc((100vw - 1200px)/2)); background:#fff; border-block:1px solid #e8e8e8; box-shadow:0 12px 18px #0000000d; display:flex; gap:48px; z-index:30; max-height:65vh; overflow:auto; }
+.beauty-desktop { position:relative; width:100%; }
+.beauty-nav__panel h2 { font-size:22px; font-weight:500; margin:0 0 18px; }
+.beauty-nav__panel h3 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; margin:0 0 14px; }
+.beauty-nav__panel ul { list-style:none; padding:0; margin:0; }
+.beauty-nav__panel li { margin:0 0 10px; font-size:14px; }
+.beauty-nav__intro { min-width:170px; }
+.beauty-nav__brands { display:block; }
+.beauty-nav__letters { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; }
+.beauty-nav__letter:not(:has(li)) { display:none; }
+.beauty-mobile__toggle > summary { list-style:none; padding:12px; cursor:pointer; }
+.beauty-mobile__toggle > summary::-webkit-details-marker { display:none; }
+.beauty-mobile__content { position:absolute; inset-inline:0; top:100%; background:white; padding:16px 24px; max-height:75dvh; overflow:auto; border-bottom:1px solid #ddd; box-shadow:0 12px 18px #0000000d; z-index:40; }
+.beauty-mobile .beauty-nav__list { display:block; }
+.beauty-mobile .beauty-nav__list > li { border-bottom:1px solid #eee; }
+.beauty-mobile .beauty-nav summary::after { content:'+'; float:right; }
+.beauty-mobile .beauty-nav details[open] > summary::after { content:'−'; }
+.beauty-mobile .beauty-nav__panel { position:static; display:block; padding:8px 12px 20px; border:0; box-shadow:none; max-height:none; }
+.beauty-mobile .beauty-nav__panel section { margin-top:20px; }
+.beauty-mobile .beauty-nav__letters { grid-template-columns:repeat(2,minmax(0,1fr)); }
+@media(min-width:750px) { .beauty-mobile { display:none; } }
+@media(max-width:749px) { .beauty-desktop { display:none; } }
+@media(min-width:750px) and (max-width:1000px) { .beauty-nav__list { gap:16px; } .beauty-nav__panel { gap:24px; } }
+
+#header-component[data-menu-style=drawer] .beauty-mobile { display:block; }
+#header-component[data-menu-style=drawer] .beauty-desktop { display:none; }
+
+.beauty-nav { font-family:var(--font-body--family); }
+.beauty-nav__panel h2 { font-family:var(--font-body--family); font-size:20px; }
