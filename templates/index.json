@@ -1,0 +1,247 @@
+{
+  "sections": {
+    "campaign": {
+      "type": "beauty-feature",
+      "settings": {
+        "layout": "campaign",
+        "eyebrow": "The new season edit",
+        "heading": "A little beauty.\nA new perspective.",
+        "body": "<p>Fresh textures, soft colour and everyday rituals. Discover a new mood in beauty.</p>",
+        "label": "Explore the edit",
+        "link": "/collections/all",
+        "fallback": "beauty-campaign.jpg",
+        "background": "#f7eeeb",
+        "image_alt": "Cosmetics and skincare editorial photograph"
+      }
+    },
+    "editorial": {
+      "type": "beauty-feature",
+      "settings": {
+        "layout": "editorial",
+        "eyebrow": "The ritual",
+        "heading": "Slow down.\nGlow on.",
+        "body": "<p>A milky cleanse, a silky serum, a moment for yourself. Meet the textures that make your daily routine feel special.</p>",
+        "label": "Discover skincare",
+        "link": "/search?type=product&q=tag%3Askincare",
+        "fallback": "beauty-editorial.jpg",
+        "background": "#f5f2eb",
+        "image_alt": "Cosmetics and skincare editorial photograph"
+      }
+    },
+    "new_in": {
+      "type": "beauty-products",
+      "settings": {
+        "eyebrow": "Just landed",
+        "heading": "New In",
+        "label": "Shop all",
+        "link": "/search?type=product&q=tag%3Anew-arrivals"
+      },
+      "blocks": {
+        "p0": {
+          "type": "product",
+          "settings": {
+            "product": "demo-midnight-velvet-face-cream"
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "product": "demo-pink-clay-face-mask"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "product": "demo-vanilla-dream-lip-mask"
+          }
+        },
+        "p3": {
+          "type": "product",
+          "settings": {
+            "product": "demo-cloud-tint-blush-peach-haze"
+          }
+        },
+        "p4": {
+          "type": "product",
+          "settings": {
+            "product": "demo-second-skin-tint-deep-neutral"
+          }
+        },
+        "p5": {
+          "type": "product",
+          "settings": {
+            "product": "demo-afterglow-eye-palette"
+          }
+        },
+        "p6": {
+          "type": "product",
+          "settings": {
+            "product": "demo-gloss-drop-hair-oil"
+          }
+        },
+        "p7": {
+          "type": "product",
+          "settings": {
+            "product": "demo-petal-fresh-dry-shampoo"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ]
+    },
+    "bestsellers": {
+      "type": "beauty-products",
+      "settings": {
+        "eyebrow": "The favourites edit",
+        "heading": "Bestsellers",
+        "label": "Shop all",
+        "link": "/search?type=product&q=tag%3Abestsellers"
+      },
+      "blocks": {
+        "p0": {
+          "type": "product",
+          "settings": {
+            "product": "demo-soft-petal-face-oil"
+          }
+        },
+        "p1": {
+          "type": "product",
+          "settings": {
+            "product": "demo-vanilla-dream-lip-mask"
+          }
+        },
+        "p2": {
+          "type": "product",
+          "settings": {
+            "product": "demo-second-skin-tint-light-neutral"
+          }
+        },
+        "p3": {
+          "type": "product",
+          "settings": {
+            "product": "demo-afterglow-eye-palette"
+          }
+        },
+        "p4": {
+          "type": "product",
+          "settings": {
+            "product": "demo-curl-cloud-styling-cream"
+          }
+        },
+        "p5": {
+          "type": "product",
+          "settings": {
+            "product": "demo-velvet-hold-styling-balm"
+          }
+        },
+        "p6": {
+          "type": "product",
+          "settings": {
+            "product": "demo-cedar-hand-wash"
+          }
+        },
+        "p7": {
+          "type": "product",
+          "settings": {
+            "product": "demo-citrus-grove-body-gel"
+          }
+        }
+      },
+      "block_order": [
+        "p0",
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7"
+      ]
+    },
+    "spotlight": {
+      "type": "beauty-feature",
+      "settings": {
+        "layout": "spotlight",
+        "eyebrow": "Brand spotlight",
+        "heading": "Velune Atelier",
+        "body": "<p>Soft textures. Considered rituals. Explore the skincare collection from our demo beauty atelier.</p>",
+        "label": "Explore the brand",
+        "link": "/collections/vendors?q=Velune%20Atelier",
+        "fallback": "beauty-spotlight.jpg",
+        "background": "#eeeae5",
+        "image_alt": "Cosmetics and skincare editorial photograph"
+      }
+    },
+    "categories": {
+      "type": "beauty-categories",
+      "settings": {
+        "heading": "Explore your beauty world"
+      },
+      "blocks": {
+        "c0": {
+          "type": "category",
+          "settings": {
+            "heading": "Skincare",
+            "link": "/search?type=product&q=tag%3Askincare",
+            "image_url": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c1": {
+          "type": "category",
+          "settings": {
+            "heading": "Makeup",
+            "link": "/search?type=product&q=tag%3Amakeup",
+            "image_url": "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "heading": "Body",
+            "link": "/search?type=product&q=tag%3Abody-care",
+            "image_url": "https://images.unsplash.com/photo-1700709678035-b6606373aa52?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "heading": "Hair",
+            "link": "/search?type=product&q=tag%3Ahaircare",
+            "image_url": "https://images.unsplash.com/photo-1701992678972-d5a053ad0fb0?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "heading": "Fragrance",
+            "link": "/search?type=product&q=tag%3Afragrance",
+            "image_url": "https://images.unsplash.com/photo-1458538977777-0549b2370168?auto=format&fit=max&w=1200&q=85"
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ]
+    }
+  },
+  "order": [
+    "campaign",
+    "editorial",
+    "new_in",
+    "bestsellers",
+    "spotlight",
+    "categories"
+  ]
+}

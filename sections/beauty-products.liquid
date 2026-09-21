@@ -1,0 +1,54 @@
+{{ 'beauty-home.css' | asset_url | stylesheet_tag }}
+<section class="bh-wrap bh-products" aria-labelledby="bh-heading-{{ section.id }}"><header class="bh-heading"><div><p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p><h2 id="bh-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2></div><div class="bh-controls"><a href="{{ section.settings.link }}">{{ section.settings.label | escape }}</a><button type="button" data-bh-direction="-1" aria-label="{{ 'beauty_home.previous' | t }}">←</button><button type="button" data-bh-direction="1" aria-label="{{ 'beauty_home.next' | t }}">→</button></div></header>
+<div class="bh-track" tabindex="0" role="region" aria-label="{{ section.settings.heading | escape }}">
+{% for block in section.blocks %}{% assign item = block.settings.product %}{% if item != blank %}<article class="bh-card" {{ block.shopify_attributes }}><a href="{{ item.url }}"><div class="bh-card__image">{% render 'beauty-card-badges', product: item %}{% if item.featured_image %}{{ item.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '300,500,700', sizes: '(max-width: 749px) 70vw, 25vw' }}{% else %}{{ 'product-1' | placeholder_svg_tag }}{% endif %}</div>{% render 'beauty-card-info', product: item %}<p class="bh-price">{{ item.price | money }} {% if item.compare_at_price > item.price %}<s>{{ item.compare_at_price | money }}</s>{% endif %}</p></a></article>{% endif %}{% endfor %}
+</div>{% if request.design_mode %}<p class="bh-editor-note">{{ 'beauty_home.select_products' | t }}</p>{% endif %}</section>
+
+{% schema %}
+{
+  "name": "Beauty product carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Discover"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "New In"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Link label",
+      "default": "Shop all"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "View all link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beauty product carousel"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

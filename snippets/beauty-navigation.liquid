@@ -1,0 +1,98 @@
+{%- doc -%}
+Beauty navigation with product-type search links and an alphabetical vendor directory.
+{%- enddoc -%}
+<nav class="beauty-nav" aria-label="{{ 'accessibility.header_navigation_label' | t }}"><ul class="beauty-nav__list">
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'tag:new-arrivals' | url_encode }}">New In</a></li>
+<li><details class="beauty-nav__item"><summary>Brands</summary><div class="beauty-nav__panel beauty-nav__brands"><h2>Brands A–Z</h2><div class="beauty-nav__letters">
+{% assign alphabet = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z' | split: ',' %}
+{% assign vendors = shop.vendors | sort_natural %}
+{% for letter in alphabet %}<section class="beauty-nav__letter"><h3>{{ letter }}</h3><ul>
+{% for vendor in vendors %}{% assign initial = vendor | slice: 0 | upcase %}{% if initial == letter %}<li>{{ vendor | link_to_vendor }}</li>{% endif %}{% endfor %}
+</ul></section>{% endfor %}
+</div></div></details></li>
+<li><details class="beauty-nav__item"><summary>Skincare</summary><div class="beauty-nav__panel">
+<div class="beauty-nav__intro"><h2>Skincare</h2>{% if collections["skincare"] != blank %}<a href="{{ collections["skincare"].url }}">Shop all skincare</a>{% else %}<a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Cleanser" OR product_type:"Cleansing Balm" OR product_type:"Face Scrub" OR product_type:"Face Serum" OR product_type:"Essence" OR product_type:"Face Oil" OR product_type:"Face Mask" OR product_type:"Moisturizer" OR product_type:"Face Gel" OR product_type:"Eye Cream" OR product_type:"Lip Mask"' | url_encode }}">Shop all skincare</a>{% endif %}</div>
+<section><h3>Cleanse</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Cleanser"' | url_encode }}">Cleanser</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Cleansing Balm"' | url_encode }}">Cleansing Balm</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Face Scrub"' | url_encode }}">Face Scrub</a></li>
+</ul></section>
+<section><h3>Treat</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Face Serum"' | url_encode }}">Face Serum</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Essence"' | url_encode }}">Essence</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Face Oil"' | url_encode }}">Face Oil</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Face Mask"' | url_encode }}">Face Mask</a></li>
+</ul></section>
+<section><h3>Moisturize</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Moisturizer"' | url_encode }}">Moisturizer</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Face Gel"' | url_encode }}">Face Gel</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eye Cream"' | url_encode }}">Eye Cream</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Lip Mask"' | url_encode }}">Lip Mask</a></li>
+</ul></section>
+</div></details></li>
+<li><details class="beauty-nav__item"><summary>Makeup</summary><div class="beauty-nav__panel">
+<div class="beauty-nav__intro"><h2>Makeup</h2>{% if collections["makeup"] != blank %}<a href="{{ collections["makeup"].url }}">Shop all makeup</a>{% else %}<a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Lipstick" OR product_type:"Lip Oil" OR product_type:"Skin Tint" OR product_type:"Blush" OR product_type:"Highlighter" OR product_type:"Mascara" OR product_type:"Eyeliner" OR product_type:"Eyeshadow"' | url_encode }}">Shop all makeup</a>{% endif %}</div>
+<section><h3>Lips</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Lipstick"' | url_encode }}">Lipstick</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Lip Oil"' | url_encode }}">Lip Oil</a></li>
+</ul></section>
+<section><h3>Complexion</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Skin Tint"' | url_encode }}">Skin Tint</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Blush"' | url_encode }}">Blush</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Highlighter"' | url_encode }}">Highlighter</a></li>
+</ul></section>
+<section><h3>Eyes</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Mascara"' | url_encode }}">Mascara</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eyeliner"' | url_encode }}">Eyeliner</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eyeshadow"' | url_encode }}">Eyeshadow</a></li>
+</ul></section>
+</div></details></li>
+<li><details class="beauty-nav__item"><summary>Body</summary><div class="beauty-nav__panel">
+<div class="beauty-nav__intro"><h2>Body</h2>{% if collections["body-care"] != blank %}<a href="{{ collections["body-care"].url }}">Shop all body</a>{% else %}<a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Wash" OR product_type:"Body Scrub" OR product_type:"Hand Wash" OR product_type:"Shower Oil" OR product_type:"Bath Milk" OR product_type:"Body Lotion" OR product_type:"Body Oil" OR product_type:"Hand Cream" OR product_type:"Body Butter" OR product_type:"Foot Cream" OR product_type:"Body Gel" OR product_type:"Body Mist"' | url_encode }}">Shop all body</a>{% endif %}</div>
+<section><h3>Cleanse</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Wash"' | url_encode }}">Body Wash</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Scrub"' | url_encode }}">Body Scrub</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Hand Wash"' | url_encode }}">Hand Wash</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Shower Oil"' | url_encode }}">Shower Oil</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Bath Milk"' | url_encode }}">Bath Milk</a></li>
+</ul></section>
+<section><h3>Moisturize</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Lotion"' | url_encode }}">Body Lotion</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Oil"' | url_encode }}">Body Oil</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Hand Cream"' | url_encode }}">Hand Cream</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Butter"' | url_encode }}">Body Butter</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Foot Cream"' | url_encode }}">Foot Cream</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Gel"' | url_encode }}">Body Gel</a></li>
+</ul></section>
+<section><h3>Scent</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Body Mist"' | url_encode }}">Body Mist</a></li>
+</ul></section>
+</div></details></li>
+<li><details class="beauty-nav__item"><summary>Hair</summary><div class="beauty-nav__panel">
+<div class="beauty-nav__intro"><h2>Hair</h2>{% if collections["haircare"] != blank %}<a href="{{ collections["haircare"].url }}">Shop all hair</a>{% else %}<a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Shampoo" OR product_type:"Conditioner" OR product_type:"Hair Mask" OR product_type:"Scalp Cleanser" OR product_type:"Leave-In Conditioner" OR product_type:"Hair Oil" OR product_type:"Styling Cream" OR product_type:"Texture Spray" OR product_type:"Dry Shampoo" OR product_type:"Hair Serum" OR product_type:"Styling Balm"' | url_encode }}">Shop all hair</a>{% endif %}</div>
+<section><h3>Wash & Condition</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Shampoo"' | url_encode }}">Shampoo</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Conditioner"' | url_encode }}">Conditioner</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Hair Mask"' | url_encode }}">Hair Mask</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Scalp Cleanser"' | url_encode }}">Scalp Cleanser</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Leave-In Conditioner"' | url_encode }}">Leave-In Conditioner</a></li>
+</ul></section>
+<section><h3>Style & Finish</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Hair Oil"' | url_encode }}">Hair Oil</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Styling Cream"' | url_encode }}">Styling Cream</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Texture Spray"' | url_encode }}">Texture Spray</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Dry Shampoo"' | url_encode }}">Dry Shampoo</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Hair Serum"' | url_encode }}">Hair Serum</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Styling Balm"' | url_encode }}">Styling Balm</a></li>
+</ul></section>
+</div></details></li>
+<li><details class="beauty-nav__item"><summary>Fragrance</summary><div class="beauty-nav__panel">
+<div class="beauty-nav__intro"><h2>Fragrance</h2>{% if collections["fragrance"] != blank %}<a href="{{ collections["fragrance"].url }}">Shop all fragrance</a>{% else %}<a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eau de Parfum" OR product_type:"Eau de Toilette" OR product_type:"Perfume Oil" OR product_type:"Travel Fragrance"' | url_encode }}">Shop all fragrance</a>{% endif %}</div>
+<section><h3>Explore</h3><ul>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eau de Parfum"' | url_encode }}">Eau de Parfum</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Eau de Toilette"' | url_encode }}">Eau de Toilette</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Perfume Oil"' | url_encode }}">Perfume Oil</a></li>
+<li><a href="{{ routes.search_url }}?type=product&amp;q={{ 'product_type:"Travel Fragrance"' | url_encode }}">Travel Fragrance</a></li>
+</ul></section>
+</div></details></li>
+<li class="beauty-nav__sale"><a href="{{ routes.search_url }}?type=product&amp;q={{ 'tag:sale' | url_encode }}">Sale</a></li></ul></nav>

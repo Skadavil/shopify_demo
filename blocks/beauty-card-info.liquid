@@ -1,0 +1,7 @@
+{% doc %}
+Brand, name and size block for product cards.
+{% enddoc %}
+{% if closest.product != blank %}<a href="{{ closest.product.url }}" class="beauty-card-info-link" {{ block.shopify_attributes }}>{% render 'beauty-card-info', product: closest.product %}</a>{% endif %}
+{% schema %}
+{"name":"Beauty card information","tag":null,"settings":[],"presets":[{"name":"Beauty card information"}]}
+{% endschema %}

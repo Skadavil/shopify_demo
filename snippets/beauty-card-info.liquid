@@ -1,0 +1,21 @@
+{% doc %}
+Product card brand, title and size.
+@param {product} product - Product to display
+{% enddoc %}
+{% liquid
+ assign card_size = ''
+ for option in product.options_with_values
+   assign option_name = option.name | downcase
+   if option_name == 'size' or option_name == 'volume'
+     assign card_size = option.values | join: ' / '
+   endif
+ endfor
+ if card_size == blank and product.description contains '<strong>Size:</strong>'
+   assign card_size = product.description | split: '<strong>Size:</strong>' | last | split: '</p>' | first | strip_html | strip
+ endif
+%}
+<div class="beauty-card-info">
+{% if product.vendor != blank %}<p class="beauty-card-brand">{{ product.vendor | escape }}</p>{% endif %}
+<h3 class="beauty-card-name">{{ product.title | escape }}</h3>
+{% if card_size != blank %}<p class="beauty-card-size">{{ card_size | escape }}</p>{% endif %}
+</div>

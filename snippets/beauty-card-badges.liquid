@@ -1,0 +1,9 @@
+{% doc %}
+Restrained product status labels.
+@param {product} product - Product to label
+{% enddoc %}
+{% if product != blank %}<div class="beauty-card-badges">
+{% if product.available == false %}<span>{{ 'content.product_badge_sold_out' | t }}</span>{% else %}
+{% if product.tags contains 'new-arrivals' %}<span>{{ 'beauty_cards.new' | t }}</span>{% endif %}
+{% if product.compare_at_price > product.price %}<span class="beauty-card-sale">{{ 'content.product_badge_sale' | t }}</span>{% endif %}
+{% endif %}</div>{% endif %}

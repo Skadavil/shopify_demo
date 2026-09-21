@@ -1,0 +1,44 @@
+
+.bh-wrap { width:min(1200px,calc(100% - 64px)); margin:48px auto; color:#111; }
+.bh-feature { display:grid; grid-template-columns:1.2fr 1fr; background:var(--bh-bg); min-height:440px; }
+.bh-feature__image { min-width:0; overflow:hidden; }
+.bh-feature__image img { width:100%; height:100%; object-fit:cover; display:block; }
+.bh-feature__copy { padding:64px 48px; display:flex; flex-direction:column; justify-content:center; align-items:flex-start; }
+.bh-eyebrow { font:500 11px/1.4 var(--font-body--family); letter-spacing:.16em; text-transform:uppercase; margin:0 0 18px; }
+.bh-feature h1,.bh-feature h2 { font:400 clamp(32px,3.8vw,52px)/1.08 Georgia,serif; letter-spacing:-.035em; white-space:pre-line; margin:0 0 24px; }
+.bh-description { font-size:15px; line-height:1.75; max-width:360px; margin-bottom:26px; }
+.bh-description p { margin:0; }
+.bh-button { background:#111; color:white; text-decoration:none; padding:16px 25px; font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+.bh-button:hover { background:#333; }
+.bh-feature--campaign { min-height:460px; }
+.bh-feature--editorial .bh-feature__image { max-height:530px; }
+.bh-feature--spotlight { grid-template-columns:1fr 1fr; }
+.bh-feature--spotlight .bh-feature__image { order:2; max-height:480px; }
+.bh-heading { display:flex; justify-content:space-between; align-items:end; gap:20px; margin-bottom:28px; }
+.bh-heading h2 { font:400 32px/1.15 Georgia,serif; margin:0; }
+.bh-heading .bh-eyebrow { margin-bottom:10px; }
+.bh-controls { display:flex; align-items:center; gap:12px; }
+.bh-controls a { color:inherit; text-underline-offset:4px; font-size:12px; margin-right:12px; }
+.bh-controls button { width:40px; height:40px; border:1px solid #ccc; background:white; cursor:pointer; font-size:20px; }
+.bh-track { display:grid; grid-auto-flow:column; grid-auto-columns:calc((100% - 72px)/4); gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:thin; padding-bottom:16px; }
+.bh-card { min-width:0; scroll-snap-align:start; }
+.bh-card a { text-decoration:none; color:inherit; }
+.bh-card__image { aspect-ratio:4/5; background:#f7f7f5; overflow:hidden; }
+.bh-card__image img,.bh-card__image svg { width:100%; height:100%; object-fit:contain; }
+.bh-brand { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; margin:18px 0 8px; }
+.bh-card h3 { font-size:14px; font-weight:400; line-height:1.5; margin:0 0 8px; }
+.bh-price { font-size:13px; margin:0; }.bh-price s { color:#777; margin-left:6px; }
+.bh-tiles { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:20px; }
+.bh-tile { text-decoration:none; color:inherit; }.bh-tile > div { aspect-ratio:3/4; overflow:hidden; background:#f6f4f1; }
+.bh-tile img { width:100%; height:100%; object-fit:cover; transition:transform .25s; }.bh-tile:hover img { transform:scale(1.03); }
+.bh-tile h3 { display:flex; justify-content:space-between; font-size:13px; font-weight:500; margin:15px 0; }
+.bh-benefits { border-block:1px solid #ddd; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:30px; padding-block:36px; text-align:center; }
+.bh-benefit-icon { display:block; font-size:28px; margin-bottom:12px; }.bh-benefits h2 { font-size:11px; text-transform:uppercase; letter-spacing:.07em; margin:0 0 10px; }.bh-benefits p { font-size:12px; line-height:1.6; color:#555; margin:0; }
+.bh-wrap :focus-visible { outline:2px solid #111; outline-offset:4px; }.bh-editor-note { font-size:12px; color:#555; }
+@media(max-width:749px) { .bh-wrap { width:calc(100% - 32px); margin-block:32px; }.bh-feature,.bh-feature--spotlight { grid-template-columns:1fr; }.bh-feature__image { height:300px; }.bh-feature--spotlight .bh-feature__image { order:0; }.bh-feature__copy { padding:32px 24px; }.bh-feature h1,.bh-feature h2 { font-size:34px; }.bh-heading h2 { font-size:28px; }.bh-controls { gap:6px; }.bh-controls a { margin-right:0; }.bh-controls button { width:32px; height:36px; }.bh-track { grid-auto-columns:72%; gap:16px; }.bh-tiles { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }.bh-benefits { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 16px; } }
+@media(prefers-reduced-motion:reduce) { .bh-tile img { transition:none; } }
+
+.bh-description,.bh-card,.bh-controls,.bh-tile,.bh-benefits,.bh-button { font-family:var(--font-body--family); }
+.bh-button,.bh-controls button { border-radius:0; }
+.bh-feature--editorial h2,.bh-feature--spotlight h2 { font-size:clamp(30px,3.2vw,42px); }
+.bh-feature__copy { gap:0; }
