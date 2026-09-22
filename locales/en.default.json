@@ -10,7 +10,7 @@
 {
   "beauty_home": {"previous": "Previous products", "next": "Next products", "select_products": "Select or replace products in this section using the theme editor."},
   "beauty_cards": {"new": "New"},
-  "beauty_store": {"subcategories": "Shop by product type", "size": "Size:", "shade": "Shade:", "description": "Description", "how_to_use": "How to Use", "ingredients": "Ingredients", "delivery": "Delivery", "returns": "Returns", "email": "Email address", "subscribe": "Subscribe", "subscribed": "Thank you for subscribing.", "privacy": "Privacy policy", "help": "Help", "about": "About", "contact": "Contact", "our_story": "Our story", "shopping": "Shopping", "social": "Social", "terms": "Terms of service"},
+  "beauty_store": {"subcategories": "Shop by product type", "size": "Size:", "shade": "Shade:", "description": "Description", "skin_types": "Skin types", "skin_concerns": "Skin concerns", "routine_step": "Routine step", "credentials": "Credentials", "cruelty_free": "Cruelty free", "key_benefits": "Key benefits", "how_to_use": "How to Use", "ingredients": "Ingredients", "delivery": "Delivery", "returns": "Returns", "email": "Email address", "subscribe": "Subscribe", "subscribed": "Thank you for subscribing.", "privacy": "Privacy policy", "help": "Help", "about": "About", "contact": "Contact", "our_story": "Our story", "shopping": "Shopping", "social": "Social", "terms": "Terms of service"},
   "accessibility": {
     "account": "Account",
     "active_filters": "Active filters:",

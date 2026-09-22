@@ -1,8 +1,69 @@
-{% assign item = closest.product %}
-<div class="bs-product-intro" {{ block.shopify_attributes }}><div class="beauty-card-brand">{{ item.vendor | link_to_vendor }}</div><h1>{{ item.title | escape }}</h1>
-{% assign summary = item.metafields.custom.summary.value %}{% if summary == blank %}{% assign summary = item.description | split: '</p>' | first | strip_html | truncate: 220 %}{% endif %}<p>{{ summary | escape }}</p>
-{% if item.has_only_default_variant %}<div class="bs-single-option">{% if item.description contains '<strong>Size:</strong>' %}<strong>{{ 'beauty_store.size' | t }}</strong> {{ item.description | split: '<strong>Size:</strong>' | last | split: '</p>' | first | strip_html | escape }}{% endif %}
-{% if item.title contains ' - ' %}<p><strong>{{ 'beauty_store.shade' | t }}</strong> {{ item.title | split: ' - ' | last | escape }}</p>{% endif %}</div>{% endif %}</div>
+{% liquid
+  assign item = closest.product
+  assign summary = item.metafields.custom.summary.value
+  assign skin_types = item.metafields.custom.skin_types.value
+  assign skin_concerns = item.metafields.custom.skin_concerns.value
+  assign routine_step = item.metafields.custom.routine_step.value
+  assign cruelty_free = item.metafields.custom.cruelty_free.value
+
+  if summary == blank
+    assign summary = item.description | split: '</p>' | first | strip_html | truncate: 220
+  endif
+%}
+
+<div class="bs-product-intro" {{ block.shopify_attributes }}>
+  <div class="beauty-card-brand">{{ item.vendor | link_to_vendor }}</div>
+  <h1>{{ item.title | escape }}</h1>
+  <p>{{ summary | escape }}</p>
+
+  {% if skin_types != blank or skin_concerns != blank or routine_step != blank or cruelty_free == true %}
+    <dl class="bs-product-meta">
+      {% if routine_step != blank %}
+        <div>
+          <dt>{{ 'beauty_store.routine_step' | t }}</dt>
+          <dd>{{ routine_step | escape }}</dd>
+        </div>
+      {% endif %}
+
+      {% if skin_types != blank %}
+        <div>
+          <dt>{{ 'beauty_store.skin_types' | t }}</dt>
+          <dd class="bs-product-tags">
+            {% for skin_type in skin_types %}<span>{{ skin_type | escape }}</span>{% endfor %}
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if skin_concerns != blank %}
+        <div>
+          <dt>{{ 'beauty_store.skin_concerns' | t }}</dt>
+          <dd class="bs-product-tags">
+            {% for concern in skin_concerns %}<span>{{ concern | escape }}</span>{% endfor %}
+          </dd>
+        </div>
+      {% endif %}
+
+      {% if cruelty_free == true %}
+        <div>
+          <dt>{{ 'beauty_store.credentials' | t }}</dt>
+          <dd>{{ 'beauty_store.cruelty_free' | t }}</dd>
+        </div>
+      {% endif %}
+    </dl>
+  {% endif %}
+
+  {% if item.has_only_default_variant %}
+    <div class="bs-single-option">
+      {% if item.description contains '<strong>Size:</strong>' %}
+        <strong>{{ 'beauty_store.size' | t }}</strong>
+        {{ item.description | split: '<strong>Size:</strong>' | last | split: '</p>' | first | strip_html | escape }}
+      {% endif %}
+      {% if item.title contains ' - ' %}
+        <p><strong>{{ 'beauty_store.shade' | t }}</strong> {{ item.title | split: ' - ' | last | escape }}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
 {% schema %}
 {
   "name": "Beauty product intro",

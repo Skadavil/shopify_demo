@@ -1,0 +1,12 @@
+{
+  "name": "beauty-storefront-theme",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.6"
+  },
+  "scripts": {
+    "metafields:print": "node --experimental-strip-types scripts/sync-product-metafields.ts --print",
+    "metafields:sync": "node --experimental-strip-types scripts/sync-product-metafields.ts"
+  }
+}

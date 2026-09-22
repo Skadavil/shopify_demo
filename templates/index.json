@@ -172,7 +172,7 @@
         "layout": "spotlight",
         "eyebrow": "Brand spotlight",
         "heading": "Velune Atelier",
-        "body": "<p>Soft textures. Considered rituals. Explore the skincare collection from our demo beauty atelier.</p>",
+        "body": "<p>Soft textures. Considered rituals. Explore the skincare collection from our beauty atelier.</p>",
         "label": "Explore the brand",
         "link": "/collections/vendors?q=Velune%20Atelier",
         "fallback": "beauty-spotlight.jpg",

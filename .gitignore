@@ -12,7 +12,6 @@ coverage/
 # Secrets and local environment
 .env
 .env.*
-!.env.example
 
 # Logs
 *.log
