@@ -1,124 +1,128 @@
-
+{{ 'beauty-home.css' | asset_url | stylesheet_tag }}
 <footer class="bs-footer">
-<div class="bh-wrap bs-service"><div><strong>{{ section.settings.benefit_1 | escape }}</strong><p>{{ section.settings.benefit_text_1 | escape }}</p></div><div><strong>{{ section.settings.benefit_2 | escape }}</strong><p>{{ section.settings.benefit_text_2 | escape }}</p></div><div><strong>{{ section.settings.benefit_3 | escape }}</strong><p>{{ section.settings.benefit_text_3 | escape }}</p></div></div>
-<div class="bh-wrap bs-newsletter"><div><p class="bh-eyebrow">{{ section.settings.newsletter_label | escape }}</p><h2>{{ section.settings.newsletter_heading | escape }}</h2><p>{{ section.settings.newsletter_text | escape }}</p></div>
-{% assign form_id = 'BeautyNewsletter-' | append: section.id %}{% form 'customer', id: form_id %}<input type="hidden" name="contact[tags]" value="newsletter"><label for="Email-{{ section.id }}">{{ 'beauty_store.email' | t }}</label><div class="bs-email-row"><input id="Email-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email | escape }}" autocomplete="email" required><button type="submit">{{ 'beauty_store.subscribe' | t }}</button></div>{% if form.posted_successfully? %}<p role="status">{{ 'beauty_store.subscribed' | t }}</p>{% endif %}{% if form.errors %}<div role="alert">{{ form.errors | default_errors }}</div>{% endif %}<p class="bs-consent">{{ section.settings.consent | escape }}{% if shop.privacy_policy.url != blank %} <a href="{{ shop.privacy_policy.url }}">{{ 'beauty_store.privacy' | t }}</a>{% endif %}</p>{% endform %}</div>
-<div class="bh-wrap bs-footer-columns"><section><h2>{{ 'beauty_store.help' | t }}</h2><ul>{% if section.settings.contact_url != blank %}<li><a href="{{ section.settings.contact_url }}">{{ 'beauty_store.contact' | t }}</a></li>{% endif %}{% if shop.shipping_policy.url != blank %}<li><a href="{{ shop.shipping_policy.url }}">{{ 'beauty_store.delivery' | t }}</a></li>{% endif %}{% if shop.refund_policy.url != blank %}<li><a href="{{ shop.refund_policy.url }}">{{ 'beauty_store.returns' | t }}</a></li>{% endif %}{% if shop.privacy_policy.url != blank %}<li><a href="{{ shop.privacy_policy.url }}">{{ 'beauty_store.privacy' | t }}</a></li>{% endif %}</ul><p>{{ section.settings.help_text | escape }}</p></section>
-<section><h2>{{ 'beauty_store.about' | t }}</h2><p>{{ section.settings.about_text | escape }}</p>{% if section.settings.about_url != blank %}<a href="{{ section.settings.about_url }}">{{ 'beauty_store.our_story' | t }}</a>{% endif %}</section>
-<section><h2>{{ 'beauty_store.shopping' | t }}</h2><ul><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Anew-arrivals">New In</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Askincare">Skincare</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Amakeup">Makeup</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Abody-care">Body</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Ahaircare">Hair</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Afragrance">Fragrance</a></li><li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Asale">Sale</a></li></ul></section><section><h2>{{ 'beauty_store.social' | t }}</h2><ul>{% if section.settings.instagram != blank %}<li><a href="{{ section.settings.instagram }}">Instagram</a></li>{% endif %}{% if section.settings.pinterest != blank %}<li><a href="{{ section.settings.pinterest }}">Pinterest</a></li>{% endif %}{% if section.settings.tiktok != blank %}<li><a href="{{ section.settings.tiktok }}">TikTok</a></li>{% endif %}</ul><p>{{ section.settings.social_text | escape }}</p></section></div>
-<div class="bh-wrap bs-footer-bottom"><span>© {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</span>{% if shop.terms_of_service.url != blank %}<a href="{{ shop.terms_of_service.url }}">{{ 'beauty_store.terms' | t }}</a>{% endif %}</div></footer>
+  <div class="bh-wrap bs-service">
+    <div><strong>{{ section.settings.benefit_1 | escape }}</strong><p>{{ section.settings.benefit_text_1 | escape }}</p></div>
+    <div><strong>{{ section.settings.benefit_2 | escape }}</strong><p>{{ section.settings.benefit_text_2 | escape }}</p></div>
+    <div><strong>{{ section.settings.benefit_3 | escape }}</strong><p>{{ section.settings.benefit_text_3 | escape }}</p></div>
+  </div>
+
+  <div class="bh-wrap">
+    <div class="bs-newsletter">
+      <div>
+        {%- if section.settings.newsletter_label != blank -%}
+          <p class="bh-eyebrow">{{ section.settings.newsletter_label | escape }}</p>
+        {%- endif -%}
+        <h2>{{ section.settings.newsletter_heading | escape }}</h2>
+        <p>{{ section.settings.newsletter_text | escape }}</p>
+      </div>
+      {%- assign form_id = 'BeautyNewsletter-' | append: section.id -%}
+      {%- form 'customer', id: form_id -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <label for="Email-{{ section.id }}">{{ 'beauty_store.email' | t }}</label>
+        <div class="bs-email-row">
+          <input
+            id="Email-{{ section.id }}"
+            type="email"
+            name="contact[email]"
+            value="{{ form.email | escape }}"
+            placeholder="{{ 'beauty_store.email' | t }}"
+            autocomplete="email"
+            required
+          >
+          <button type="submit">{{ 'beauty_store.subscribe' | t }}</button>
+        </div>
+        {%- if form.posted_successfully? -%}<p role="status">{{ 'beauty_store.subscribed' | t }}</p>{%- endif -%}
+        {%- if form.errors -%}<div role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+        <p class="bs-consent">
+          {{- section.settings.consent | escape }}
+          {%- if shop.privacy_policy.url != blank %} <a href="{{ shop.privacy_policy.url }}">{{ 'beauty_store.privacy' | t }}</a>{% endif -%}
+        </p>
+      {%- endform -%}
+    </div>
+  </div>
+
+  <div class="bh-wrap bs-footer-columns">
+    <section>
+      <h2>{{ 'beauty_store.help' | t }}</h2>
+      <ul>
+        {%- if section.settings.contact_url != blank -%}<li><a href="{{ section.settings.contact_url }}">{{ 'beauty_store.contact' | t }}</a></li>{%- endif -%}
+        {%- if shop.shipping_policy.url != blank -%}<li><a href="{{ shop.shipping_policy.url }}">{{ 'beauty_store.delivery' | t }}</a></li>{%- endif -%}
+        {%- if shop.refund_policy.url != blank -%}<li><a href="{{ shop.refund_policy.url }}">{{ 'beauty_store.returns' | t }}</a></li>{%- endif -%}
+        {%- if shop.privacy_policy.url != blank -%}<li><a href="{{ shop.privacy_policy.url }}">{{ 'beauty_store.privacy' | t }}</a></li>{%- endif -%}
+      </ul>
+      <p>{{ section.settings.help_text | escape }}</p>
+    </section>
+
+    <section>
+      <h2>{{ 'beauty_store.about' | t }}</h2>
+      <p>{{ section.settings.about_text | escape }}</p>
+      {%- if section.settings.about_url != blank -%}<a href="{{ section.settings.about_url }}">{{ 'beauty_store.our_story' | t }}</a>{%- endif -%}
+    </section>
+
+    <section>
+      <h2>{{ 'beauty_store.shopping' | t }}</h2>
+      <ul>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Anew-arrivals">New In</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Askincare">Skincare</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Amakeup">Makeup</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Abody-care">Body</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Ahaircare">Hair</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Afragrance">Fragrance</a></li>
+        <li><a href="{{ routes.search_url }}?type=product&amp;q=tag%3Asale">Sale</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>{{ 'beauty_store.social' | t }}</h2>
+      <ul>
+        {%- if section.settings.instagram != blank -%}<li><a href="{{ section.settings.instagram }}">Instagram</a></li>{%- endif -%}
+        {%- if section.settings.pinterest != blank -%}<li><a href="{{ section.settings.pinterest }}">Pinterest</a></li>{%- endif -%}
+        {%- if section.settings.tiktok != blank -%}<li><a href="{{ section.settings.tiktok }}">TikTok</a></li>{%- endif -%}
+      </ul>
+      <p>{{ section.settings.social_text | escape }}</p>
+    </section>
+  </div>
+
+  {%- if shop.enabled_payment_types.size > 0 -%}
+    <div class="bh-wrap bs-payments">
+      <h2>{{ 'beauty_store.payment' | t }}</h2>
+      {%- for type in shop.enabled_payment_types -%}
+        <span>{{ type | replace: '_', ' ' }}</span>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+
+  <div class="bh-wrap bs-footer-bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name | escape }}</span>
+    {%- if shop.terms_of_service.url != blank -%}
+      <a href="{{ shop.terms_of_service.url }}">{{ 'beauty_store.terms' | t }}</a>
+    {%- endif -%}
+  </div>
+</footer>
+
 {% schema %}
 {
   "name": "Beauty footer",
   "settings": [
-    {
-      "type": "text",
-      "id": "newsletter_label",
-      "label": "Newsletter eyebrow",
-      "default": "The beauty letter"
-    },
-    {
-      "type": "text",
-      "id": "newsletter_heading",
-      "label": "Newsletter heading",
-      "default": "A little inspiration, in your inbox."
-    },
-    {
-      "type": "text",
-      "id": "newsletter_text",
-      "label": "Newsletter description",
-      "default": "Discover new arrivals, thoughtful routines and the latest beauty edits."
-    },
-    {
-      "type": "text",
-      "id": "consent",
-      "label": "Signup notice",
-      "default": "Subscribe to receive marketing emails. Unsubscribe at any time."
-    },
-    {
-      "type": "text",
-      "id": "about_text",
-      "label": "About copy",
-      "default": "An independent edit of considered beauty essentials and everyday rituals."
-    },
-    {
-      "type": "text",
-      "id": "help_text",
-      "label": "Help copy",
-      "default": "Explore the available store policies for shopping information."
-    },
-    {
-      "type": "text",
-      "id": "social_text",
-      "label": "Social copy",
-      "default": "Our social channels are coming soon."
-    },
-    {
-      "type": "text",
-      "id": "benefit_1",
-      "label": "Benefit heading 1",
-      "default": "Curated beauty"
-    },
-    {
-      "type": "text",
-      "id": "benefit_text_1",
-      "label": "Benefit text 1",
-      "default": "Explore skincare, makeup, hair, body and fragrance."
-    },
-    {
-      "type": "text",
-      "id": "benefit_2",
-      "label": "Benefit heading 2",
-      "default": "Easy discovery"
-    },
-    {
-      "type": "text",
-      "id": "benefit_text_2",
-      "label": "Benefit text 2",
-      "default": "Browse by product type or find your favourite brand."
-    },
-    {
-      "type": "text",
-      "id": "benefit_3",
-      "label": "Benefit heading 3",
-      "default": "Thoughtful details"
-    },
-    {
-      "type": "text",
-      "id": "benefit_text_3",
-      "label": "Benefit text 3",
-      "default": "Find sizes, shades and product information in one place."
-    },
-    {
-      "type": "url",
-      "id": "contact_url",
-      "label": "Contact page"
-    },
-    {
-      "type": "url",
-      "id": "about_url",
-      "label": "About page"
-    },
-    {
-      "type": "url",
-      "id": "instagram",
-      "label": "Instagram profile"
-    },
-    {
-      "type": "url",
-      "id": "pinterest",
-      "label": "Pinterest profile"
-    },
-    {
-      "type": "url",
-      "id": "tiktok",
-      "label": "TikTok profile"
-    }
+    { "type": "text", "id": "newsletter_label", "label": "Newsletter eyebrow", "default": "Newsletter" },
+    { "type": "text", "id": "newsletter_heading", "label": "Newsletter heading", "default": "Never miss an offer" },
+    { "type": "text", "id": "newsletter_text", "label": "Newsletter description", "default": "New arrivals, exclusive offers and beauty news, straight to your inbox." },
+    { "type": "text", "id": "consent", "label": "Signup notice", "default": "Subscribe to receive marketing emails. Unsubscribe at any time." },
+    { "type": "text", "id": "about_text", "label": "About copy", "default": "An independent edit of considered beauty essentials and everyday rituals." },
+    { "type": "text", "id": "help_text", "label": "Help copy", "default": "Explore the available store policies for shopping information." },
+    { "type": "text", "id": "social_text", "label": "Social copy", "default": "Our social channels are coming soon." },
+    { "type": "text", "id": "benefit_1", "label": "Benefit heading 1", "default": "Free delivery" },
+    { "type": "text", "id": "benefit_text_1", "label": "Benefit text 1", "default": "On every order placed in this demo storefront." },
+    { "type": "text", "id": "benefit_2", "label": "Benefit heading 2", "default": "Free samples" },
+    { "type": "text", "id": "benefit_text_2", "label": "Benefit text 2", "default": "Choose complimentary samples at checkout." },
+    { "type": "text", "id": "benefit_3", "label": "Benefit heading 3", "default": "Easy returns" },
+    { "type": "text", "id": "benefit_text_3", "label": "Benefit text 3", "default": "30 days to change your mind on any order." },
+    { "type": "url", "id": "contact_url", "label": "Contact page" },
+    { "type": "url", "id": "about_url", "label": "About page" },
+    { "type": "url", "id": "instagram", "label": "Instagram profile" },
+    { "type": "url", "id": "pinterest", "label": "Pinterest profile" },
+    { "type": "url", "id": "tiktok", "label": "TikTok profile" }
   ],
-  "presets": [
-    {
-      "name": "Beauty footer"
-    }
-  ]
+  "presets": [{ "name": "Beauty footer" }]
 }
 {% endschema %}

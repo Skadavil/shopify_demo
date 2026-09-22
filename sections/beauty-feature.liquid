@@ -1,41 +1,74 @@
 {{ 'beauty-home.css' | asset_url | stylesheet_tag }}
-<section class="bh-wrap"><div class="bh-feature bh-feature--{{ section.settings.layout }}" style="--bh-bg:{{ section.settings.background }}">
-<div class="bh-feature__image">
-{% if section.settings.image != blank %}{{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', widths: '480,800,1200,1800', sizes: '(max-width: 749px) 100vw, 60vw' }}
-{% else %}<img src="{{ section.settings.fallback | asset_url }}" alt="{{ section.settings.image_alt | escape }}" width="1800" height="1200" {% if section.settings.layout == 'campaign' %}fetchpriority="high"{% else %}loading="lazy"{% endif %}>{% endif %}
-</div><div class="bh-feature__copy"><p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p>
-{% if section.settings.layout == 'campaign' %}<h1>{{ section.settings.heading | escape }}</h1>{% else %}<h2>{{ section.settings.heading | escape }}</h2>{% endif %}
-<div class="bh-description">{{ section.settings.body }}</div><a class="bh-button" href="{{ section.settings.link }}">{{ section.settings.label | escape }}</a>
-</div></div></section>
+{%- liquid
+  assign layout = section.settings.layout
+  assign is_hero = false
+  if layout == 'hero'
+    assign is_hero = true
+  endif
+-%}
+{%- capture media -%}
+  {%- if layout == 'band' -%}
+  {%- elsif section.settings.image != blank -%}
+    {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', widths: '480,800,1200,1600,2000', sizes: '(max-width: 989px) 100vw, 60vw' }}
+  {%- else -%}
+    <img
+      src="{{ section.settings.fallback | asset_url }}"
+      alt="{{ section.settings.image_alt | escape }}"
+      width="1800"
+      height="1200"
+      {% if is_hero %}fetchpriority="high"{% else %}loading="lazy"{% endif %}
+    >
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture copy -%}
+  {%- if section.settings.eyebrow != blank -%}
+    <p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+  {%- endif -%}
+  {%- if is_hero -%}
+    <h1>{{ section.settings.heading | escape }}</h1>
+  {%- else -%}
+    <h2>{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
+  <div class="bh-description">{{ section.settings.body }}</div>
+  {%- if section.settings.label != blank -%}
+    <a class="bh-button" href="{{ section.settings.link | default: routes.all_products_collection_url }}">
+      {{- section.settings.label | escape -}}
+    </a>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if is_hero -%}
+  <section class="bh-wrap bh-hero">
+    <div class="bh-hero__image">{{ media }}</div>
+    <div class="bh-hero__copy"><div class="bh-hero__panel">{{ copy }}</div></div>
+  </section>
+{%- else -%}
+  <section class="bh-wrap">
+    <div class="bh-feature bh-feature--{{ layout }}">
+      <div class="bh-feature__image">{{ media }}</div>
+      <div class="bh-feature__copy">{{ copy }}</div>
+    </div>
+  </section>
+{%- endif -%}
+
 {% schema %}
 {
-  "name": "Beauty feature",
+  "name": "Beauty banner",
   "settings": [
     {
       "type": "select",
       "id": "layout",
       "label": "Layout",
       "options": [
-        {
-          "value": "campaign",
-          "label": "Campaign"
-        },
-        {
-          "value": "editorial",
-          "label": "Editorial"
-        },
-        {
-          "value": "spotlight",
-          "label": "Spotlight"
-        }
+        { "value": "hero", "label": "Hero (full width, overlaid panel)" },
+        { "value": "split", "label": "Split (image left)" },
+        { "value": "reverse", "label": "Split (image right)" },
+        { "value": "band", "label": "Inverted band (text only)" }
       ],
-      "default": "editorial"
+      "default": "split"
     },
-    {
-      "type": "image_picker",
-      "id": "image",
-      "label": "Image"
-    },
+    { "type": "image_picker", "id": "image", "label": "Image" },
     {
       "type": "text",
       "id": "fallback",
@@ -46,48 +79,19 @@
       "type": "text",
       "id": "image_alt",
       "label": "Image description",
-      "default": "Beauty editorial photograph"
+      "default": "Beauty products photograph"
     },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "The beauty edit"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Everyday, elevated."
-    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Exclusive" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Up to 30% off" },
     {
       "type": "richtext",
       "id": "body",
       "label": "Description",
       "default": "<p>Discover your next beauty favourite.</p>"
     },
-    {
-      "type": "text",
-      "id": "label",
-      "label": "Button label",
-      "default": "Discover now"
-    },
-    {
-      "type": "url",
-      "id": "link",
-      "label": "Button link"
-    },
-    {
-      "type": "color",
-      "id": "background",
-      "label": "Background",
-      "default": "#f5efea"
-    }
+    { "type": "text", "id": "label", "label": "Button label", "default": "Shop now" },
+    { "type": "url", "id": "link", "label": "Button link" }
   ],
-  "presets": [
-    {
-      "name": "Beauty feature"
-    }
-  ]
+  "presets": [{ "name": "Beauty banner" }]
 }
 {% endschema %}

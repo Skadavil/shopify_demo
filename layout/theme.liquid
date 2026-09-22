@@ -29,11 +29,12 @@
     {% endif %}
 
     {{ content_for_header }}
-    {{ "beauty-header.css" | asset_url | stylesheet_tag }}
-  <script src="{{ 'beauty-navigation.js' | asset_url }}" defer></script>
-  <script src="{{ 'beauty-home.js' | asset_url }}" defer></script>
-  {{ 'beauty-cards.css' | asset_url | stylesheet_tag }}
-  {{ 'beauty-store.css' | asset_url | stylesheet_tag }}
+    {{ 'beauty.css' | asset_url | stylesheet_tag }}
+    {{ 'beauty-header.css' | asset_url | stylesheet_tag }}
+    {{ 'beauty-cards.css' | asset_url | stylesheet_tag }}
+    {{ 'beauty-store.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'beauty-navigation.js' | asset_url }}" defer></script>
+    <script src="{{ 'beauty-home.js' | asset_url }}" defer></script>
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">

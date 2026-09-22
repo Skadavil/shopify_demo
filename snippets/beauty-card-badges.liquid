@@ -1,9 +1,25 @@
 {% doc %}
-Restrained product status labels.
+Product status labels. The card leads with the discount, so the sale chip
+carries the actual percentage and is rendered inverted.
 @param {product} product - Product to label
 {% enddoc %}
-{% if product != blank %}<div class="beauty-card-badges">
-{% if product.available == false %}<span>{{ 'content.product_badge_sold_out' | t }}</span>{% else %}
-{% if product.tags contains 'new-arrivals' %}<span>{{ 'beauty_cards.new' | t }}</span>{% endif %}
-{% if product.compare_at_price > product.price %}<span class="beauty-card-sale">{{ 'content.product_badge_sale' | t }}</span>{% endif %}
-{% endif %}</div>{% endif %}
+{%- if product != blank -%}
+  {%- liquid
+    assign saved = 0
+    if product.compare_at_price > product.price
+      assign saved = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+    endif
+  -%}
+  <div class="beauty-card-badges">
+    {%- if product.available == false -%}
+      <span>{{ 'content.product_badge_sold_out' | t }}</span>
+    {%- else -%}
+      {%- if saved > 0 -%}
+        <span class="beauty-card-sale">-{{ saved }}%</span>
+      {%- endif -%}
+      {%- if product.tags contains 'new-arrivals' -%}
+        <span>{{ 'beauty_cards.new' | t }}</span>
+      {%- endif -%}
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -4,7 +4,21 @@
   "sections": {
     "beauty_footer": {
       "type": "beauty-footer",
-      "settings": {}
+      "settings": {
+        "newsletter_label": "Newsletter",
+        "newsletter_heading": "Never miss an offer",
+        "newsletter_text": "New arrivals, exclusive offers and beauty news, straight to your inbox.",
+        "consent": "Subscribe to receive marketing emails. Unsubscribe at any time.",
+        "benefit_1": "Customer service",
+        "benefit_text_1": "Questions about an order? The store policies cover the details.",
+        "benefit_2": "Secure payment",
+        "benefit_text_2": "Every checkout runs through Shopify's secure payment flow.",
+        "benefit_3": "Beauty advice",
+        "benefit_text_3": "Shades, sizes and full product information on every page.",
+        "about_text": "An independent edit of considered beauty essentials and everyday rituals.",
+        "help_text": "Explore the available store policies for shopping information.",
+        "social_text": "Our social channels are coming soon."
+      }
     }
   },
   "order": [

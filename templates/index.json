@@ -1,39 +1,136 @@
 {
   "sections": {
-    "campaign": {
+    "hero": {
       "type": "beauty-feature",
       "settings": {
-        "layout": "campaign",
-        "eyebrow": "The new season edit",
-        "heading": "A little beauty.\nA new perspective.",
-        "body": "<p>Fresh textures, soft colour and everyday rituals. Discover a new mood in beauty.</p>",
-        "label": "Explore the edit",
+        "layout": "hero",
+        "eyebrow": "Beauty highlight",
+        "heading": "The beauty\nedit",
+        "body": "<p>Skincare, make-up, hair and fragrance \u2014 everything you need, in one place.</p>",
+        "label": "Shop now",
         "link": "/collections/all",
         "fallback": "beauty-campaign.jpg",
-        "background": "#f7eeeb",
-        "image_alt": "Cosmetics and skincare editorial photograph"
+        "image_alt": "Cosmetics and skincare photograph"
       }
     },
-    "editorial": {
-      "type": "beauty-feature",
+    "service": {
+      "type": "beauty-benefits",
       "settings": {
-        "layout": "editorial",
-        "eyebrow": "The ritual",
-        "heading": "Slow down.\nGlow on.",
-        "body": "<p>A milky cleanse, a silky serum, a moment for yourself. Meet the textures that make your daily routine feel special.</p>",
-        "label": "Discover skincare",
-        "link": "/search?type=product&q=tag%3Askincare",
-        "fallback": "beauty-editorial.jpg",
-        "background": "#f5f2eb",
-        "image_alt": "Cosmetics and skincare editorial photograph"
-      }
+        "heading": "Our service"
+      },
+      "blocks": {
+        "b0": {
+          "type": "benefit",
+          "settings": {
+            "symbol": "\u2713",
+            "heading": "Free delivery",
+            "body": "On every order in this demo storefront."
+          }
+        },
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "symbol": "\u2726",
+            "heading": "Free samples",
+            "body": "Choose complimentary samples at checkout."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "symbol": "\u21ba",
+            "heading": "30-day returns",
+            "body": "Change your mind within 30 days."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "symbol": "\u2691",
+            "heading": "Beauty advice",
+            "body": "Product details, shades and sizes in one place."
+          }
+        }
+      },
+      "block_order": [
+        "b0",
+        "b1",
+        "b2",
+        "b3"
+      ]
+    },
+    "categories": {
+      "type": "beauty-categories",
+      "settings": {
+        "heading": "Shop by category",
+        "label": "All products",
+        "link": "/collections/all"
+      },
+      "blocks": {
+        "c0": {
+          "type": "category",
+          "settings": {
+            "heading": "Skincare",
+            "link": "/search?type=product&q=tag%3Askincare",
+            "image_url": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c1": {
+          "type": "category",
+          "settings": {
+            "heading": "Make-up",
+            "link": "/search?type=product&q=tag%3Amakeup",
+            "image_url": "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c2": {
+          "type": "category",
+          "settings": {
+            "heading": "Body",
+            "link": "/search?type=product&q=tag%3Abody-care",
+            "image_url": "https://images.unsplash.com/photo-1700709678035-b6606373aa52?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c3": {
+          "type": "category",
+          "settings": {
+            "heading": "Hair",
+            "link": "/search?type=product&q=tag%3Ahaircare",
+            "image_url": "https://images.unsplash.com/photo-1701992678972-d5a053ad0fb0?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c4": {
+          "type": "category",
+          "settings": {
+            "heading": "Fragrance",
+            "link": "/search?type=product&q=tag%3Afragrance",
+            "image_url": "https://images.unsplash.com/photo-1458538977777-0549b2370168?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "c5": {
+          "type": "category",
+          "settings": {
+            "heading": "New In",
+            "link": "/search?type=product&q=tag%3Anew-arrivals",
+            "image_url": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=max&w=1200&q=85"
+          }
+        }
+      },
+      "block_order": [
+        "c0",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ]
     },
     "new_in": {
       "type": "beauty-products",
       "settings": {
         "eyebrow": "Just landed",
         "heading": "New In",
-        "label": "Shop all",
+        "label": "View all",
         "link": "/search?type=product&q=tag%3Anew-arrivals"
       },
       "blocks": {
@@ -97,12 +194,70 @@
         "p7"
       ]
     },
+    "promos": {
+      "type": "beauty-promo-grid",
+      "settings": {
+        "heading": "Offers of the week"
+      },
+      "blocks": {
+        "t0": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Skincare",
+            "heading": "Build your routine",
+            "body": "Cleanse, treat and moisturise with the full skincare range.",
+            "label": "Shop skincare",
+            "link": "/search?type=product&q=tag%3Askincare",
+            "image_url": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "t1": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Make-up",
+            "heading": "Shades for every skin",
+            "body": "Tints, blushes and palettes across the make-up edit.",
+            "label": "Shop make-up",
+            "link": "/search?type=product&q=tag%3Amakeup",
+            "image_url": "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "t2": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Sale",
+            "heading": "Reduced right now",
+            "body": "Every product currently carrying a reduced price.",
+            "label": "Shop sale",
+            "link": "/search?type=product&q=tag%3Asale",
+            "image_url": "https://images.unsplash.com/photo-1700709678035-b6606373aa52?auto=format&fit=max&w=1200&q=85"
+          }
+        },
+        "t3": {
+          "type": "promo",
+          "settings": {
+            "kicker": "Fragrance",
+            "heading": "Find your scent",
+            "body": "Eau de parfum, eau de toilette and travel sizes.",
+            "label": "Shop fragrance",
+            "link": "/search?type=product&q=tag%3Afragrance",
+            "image_url": "https://images.unsplash.com/photo-1458538977777-0549b2370168?auto=format&fit=max&w=1200&q=85"
+          }
+        }
+      },
+      "block_order": [
+        "t0",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
     "bestsellers": {
       "type": "beauty-products",
       "settings": {
-        "eyebrow": "The favourites edit",
+        "eyebrow": "Customer favourites",
         "heading": "Bestsellers",
-        "label": "Shop all",
+        "label": "View all",
         "link": "/search?type=product&q=tag%3Abestsellers"
       },
       "blocks": {
@@ -166,82 +321,66 @@
         "p7"
       ]
     },
+    "brands": {
+      "type": "beauty-brand-strip",
+      "settings": {
+        "eyebrow": "Our brands",
+        "heading": "Top brands",
+        "limit": 12,
+        "label": "All brands",
+        "link": "/collections/vendors"
+      }
+    },
     "spotlight": {
       "type": "beauty-feature",
       "settings": {
-        "layout": "spotlight",
+        "layout": "reverse",
         "eyebrow": "Brand spotlight",
         "heading": "Velune Atelier",
-        "body": "<p>Soft textures. Considered rituals. Explore the skincare collection from our beauty atelier.</p>",
+        "body": "<p>Considered formulas and everyday rituals. Explore the skincare collection from our demo beauty atelier.</p>",
         "label": "Explore the brand",
         "link": "/collections/vendors?q=Velune%20Atelier",
         "fallback": "beauty-spotlight.jpg",
-        "background": "#eeeae5",
-        "image_alt": "Cosmetics and skincare editorial photograph"
+        "image_alt": "Skincare products photograph"
       }
     },
-    "categories": {
-      "type": "beauty-categories",
+    "sale_band": {
+      "type": "beauty-feature",
       "settings": {
-        "heading": "Explore your beauty world"
-      },
-      "blocks": {
-        "c0": {
-          "type": "category",
-          "settings": {
-            "heading": "Skincare",
-            "link": "/search?type=product&q=tag%3Askincare",
-            "image_url": "https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?auto=format&fit=max&w=1200&q=85"
-          }
-        },
-        "c1": {
-          "type": "category",
-          "settings": {
-            "heading": "Makeup",
-            "link": "/search?type=product&q=tag%3Amakeup",
-            "image_url": "https://images.unsplash.com/photo-1625093742435-6fa192b6fb10?auto=format&fit=max&w=1200&q=85"
-          }
-        },
-        "c2": {
-          "type": "category",
-          "settings": {
-            "heading": "Body",
-            "link": "/search?type=product&q=tag%3Abody-care",
-            "image_url": "https://images.unsplash.com/photo-1700709678035-b6606373aa52?auto=format&fit=max&w=1200&q=85"
-          }
-        },
-        "c3": {
-          "type": "category",
-          "settings": {
-            "heading": "Hair",
-            "link": "/search?type=product&q=tag%3Ahaircare",
-            "image_url": "https://images.unsplash.com/photo-1701992678972-d5a053ad0fb0?auto=format&fit=max&w=1200&q=85"
-          }
-        },
-        "c4": {
-          "type": "category",
-          "settings": {
-            "heading": "Fragrance",
-            "link": "/search?type=product&q=tag%3Afragrance",
-            "image_url": "https://images.unsplash.com/photo-1458538977777-0549b2370168?auto=format&fit=max&w=1200&q=85"
-          }
-        }
-      },
-      "block_order": [
-        "c0",
-        "c1",
-        "c2",
-        "c3",
-        "c4"
-      ]
+        "layout": "band",
+        "eyebrow": "Limited time",
+        "heading": "Sale is on",
+        "body": "<p>Every reduced product across skincare, make-up, hair, body and fragrance.</p>",
+        "label": "Shop the sale",
+        "link": "/search?type=product&q=tag%3Asale",
+        "fallback": "beauty-editorial.jpg",
+        "image_alt": "Beauty products photograph"
+      }
+    },
+    "editorial": {
+      "type": "beauty-feature",
+      "settings": {
+        "layout": "split",
+        "eyebrow": "The ritual",
+        "heading": "Everyday\nskincare",
+        "body": "<p>A milky cleanse, a silky serum, a moment for yourself. Meet the textures that make your routine.</p>",
+        "label": "Discover skincare",
+        "link": "/search?type=product&q=tag%3Askincare",
+        "fallback": "beauty-editorial.jpg",
+        "image_alt": "Skincare textures photograph"
+      }
     }
   },
   "order": [
-    "campaign",
-    "editorial",
+    "hero",
+    "service",
+    "categories",
     "new_in",
+    "promos",
     "bestsellers",
+    "brands",
     "spotlight",
-    "categories"
+    "sale_band",
+    "editorial"
   ]
 }

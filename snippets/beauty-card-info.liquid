@@ -1,5 +1,5 @@
 {% doc %}
-Product card brand, title and size.
+Product card brand, title, size and rating.
 @param {product} product - Product to display
 {% enddoc %}
 {% liquid
@@ -18,4 +18,5 @@ Product card brand, title and size.
 {% if product.vendor != blank %}<p class="beauty-card-brand">{{ product.vendor | escape }}</p>{% endif %}
 <h3 class="beauty-card-name">{{ product.title | escape }}</h3>
 {% if card_size != blank %}<p class="beauty-card-size">{{ card_size | escape }}</p>{% endif %}
+{% render 'beauty-card-rating', product: product %}
 </div>

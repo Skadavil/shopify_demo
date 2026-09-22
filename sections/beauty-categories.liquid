@@ -1,47 +1,49 @@
 {{ 'beauty-home.css' | asset_url | stylesheet_tag }}
-<section class="bh-wrap bh-categories"><header class="bh-heading"><h2>{{ section.settings.heading | escape }}</h2></header><div class="bh-tiles">{% for block in section.blocks %}<a class="bh-tile" href="{{ block.settings.link }}" {{ block.shopify_attributes }}><div>{% if block.settings.image != blank %}{{ block.settings.image | image_url: width: 700 | image_tag: loading: 'lazy' }}{% else %}<img src="{{ block.settings.image_url }}" alt="{{ block.settings.heading | escape }}" width="600" height="750" loading="lazy">{% endif %}</div><h3>{{ block.settings.heading | escape }} <span aria-hidden="true">↗</span></h3></a>{% endfor %}</div></section>
+<section class="bh-wrap bh-categories" aria-labelledby="bh-cat-{{ section.id }}">
+  <header class="bh-heading">
+    <h2 id="bh-cat-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    {%- if section.settings.label != blank -%}
+      <div class="bh-controls">
+        <a href="{{ section.settings.link | default: routes.all_products_collection_url }}">
+          {{- section.settings.label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </header>
+  <div class="bh-tiles">
+    {%- for block in section.blocks -%}
+      <a class="bh-tile" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+        <div>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 500 | image_tag: loading: 'lazy', widths: '200,320,500', sizes: '(max-width: 749px) 30vw, 15vw' }}
+          {%- else -%}
+            <img src="{{ block.settings.image_url }}" alt="{{ block.settings.heading | escape }}" width="500" height="500" loading="lazy">
+          {%- endif -%}
+        </div>
+        <h3>{{ block.settings.heading | escape }}</h3>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
 {% schema %}
 {
-  "name": "Beauty category tiles",
+  "name": "Beauty category circles",
   "settings": [
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Heading",
-      "default": "Explore your beauty world"
-    }
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by category" },
+    { "type": "text", "id": "label", "label": "Link label" },
+    { "type": "url", "id": "link", "label": "Link" }
   ],
-  "presets": [
-    {
-      "name": "Beauty category tiles"
-    }
-  ],
+  "presets": [{ "name": "Beauty category circles" }],
   "blocks": [
     {
       "type": "category",
       "name": "Category",
       "settings": [
-        {
-          "type": "text",
-          "id": "heading",
-          "label": "Title",
-          "default": "Skincare"
-        },
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "url",
-          "id": "image_url",
-          "label": "Fallback image URL"
-        },
-        {
-          "type": "url",
-          "id": "link",
-          "label": "Link"
-        }
+        { "type": "text", "id": "heading", "label": "Title", "default": "Skincare" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "image_url", "label": "Fallback image URL" },
+        { "type": "url", "id": "link", "label": "Link" }
       ]
     }
   ]

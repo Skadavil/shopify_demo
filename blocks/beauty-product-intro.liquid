@@ -12,6 +12,13 @@
 %}
 
 <div class="bs-product-intro" {{ block.shopify_attributes }}>
+  <nav class="bs-pdp-breadcrumbs" aria-label="Breadcrumb">
+    <a href="{{ routes.root_url }}">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="{{ item.vendor | url_for_vendor }}">{{ item.vendor | escape }}</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">{{ item.title | escape }}</span>
+  </nav>
   <div class="beauty-card-brand">{{ item.vendor | link_to_vendor }}</div>
   <h1>{{ item.title | escape }}</h1>
   <p>{{ summary | escape }}</p>

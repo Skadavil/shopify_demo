@@ -1,0 +1,27 @@
+{% doc %}
+Beauty-style price line: current price, struck-through reference price, a
+discount chip and the unit price when the product carries one.
+@param {product} product - Product to price
+{% enddoc %}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign on_sale = false
+  if product.compare_at_price > product.price
+    assign on_sale = true
+    assign saved = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round
+  endif
+-%}
+<p class="bh-price">
+  <span>{{ product.price | money }}</span>
+  {%- if on_sale -%}
+    <s>{{ product.compare_at_price | money }}</s>
+    {%- if saved > 0 -%}
+      <span class="bh-discount">-{{ saved }}%</span>
+    {%- endif -%}
+  {%- endif -%}
+</p>
+{%- if variant.unit_price_measurement -%}
+  <p class="bh-unit">
+    {{- variant.unit_price | money }} / {% if variant.unit_price_measurement.reference_value != 1 %}{{ variant.unit_price_measurement.reference_value }}{% endif %}{{ variant.unit_price_measurement.reference_unit -}}
+  </p>
+{%- endif -%}

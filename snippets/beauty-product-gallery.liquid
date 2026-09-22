@@ -1,0 +1,72 @@
+{% doc %}
+  Renders the Beauty storefront product media gallery.
+
+  @param {product} product - Product whose media should be displayed.
+{% enddoc %}
+
+{% liquid
+  assign featured_media = product.selected_or_first_available_variant.featured_media
+  if featured_media == blank
+    assign featured_media = product.featured_media
+  endif
+%}
+
+<script src="{{ 'beauty-product-gallery.js' | asset_url }}" type="module"></script>
+
+<beauty-product-gallery class="bs-pdp-gallery{% if product.media.size < 2 %} bs-pdp-gallery--single{% endif %}">
+  {% if product.media.size > 1 %}
+    <div class="bs-pdp-gallery__thumbs" role="list" aria-label="Product media">
+      {% for media in product.media %}
+        {% assign preview = media.preview_image %}
+        <button
+          class="bs-pdp-gallery__thumb{% if media.id == featured_media.id %} is-active{% endif %}"
+          type="button"
+          data-gallery-thumb
+          data-image-src="{{ preview | image_url: width: 1400 }}"
+          data-image-srcset="{{ preview | image_url: width: 700 }} 700w, {{ preview | image_url: width: 1000 }} 1000w, {{ preview | image_url: width: 1400 }} 1400w"
+          data-image-alt="{{ preview.alt | default: product.title | escape }}"
+          aria-label="View product image {{ forloop.index }}"
+          aria-pressed="{% if media.id == featured_media.id %}true{% else %}false{% endif %}"
+          role="listitem"
+        >
+          {{ preview | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80,120,160', alt: preview.alt }}
+        </button>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <div class="bs-pdp-gallery__stage">
+    {% if featured_media != blank %}
+      {% assign featured_preview = featured_media.preview_image %}
+      <img
+        class="bs-pdp-gallery__image"
+        data-gallery-image
+        src="{{ featured_preview | image_url: width: 1400 }}"
+        srcset="{{ featured_preview | image_url: width: 700 }} 700w, {{ featured_preview | image_url: width: 1000 }} 1000w, {{ featured_preview | image_url: width: 1400 }} 1400w"
+        sizes="(min-width: 990px) 58vw, 100vw"
+        width="{{ featured_preview.width }}"
+        height="{{ featured_preview.height }}"
+        alt="{{ featured_preview.alt | default: product.title | escape }}"
+        fetchpriority="high"
+      >
+      <button class="bs-pdp-gallery__zoom" type="button" data-gallery-zoom aria-label="Open larger product image">
+        <span aria-hidden="true">＋</span>
+      </button>
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'bs-pdp-gallery__placeholder' }}
+    {% endif %}
+  </div>
+
+  <dialog class="bs-pdp-gallery__dialog" data-gallery-dialog aria-label="Product image preview">
+    <button type="button" class="bs-pdp-gallery__dialog-close" data-gallery-close aria-label="Close image preview">×</button>
+    {% if featured_media != blank %}
+      <img
+        data-gallery-dialog-image
+        src="{{ featured_preview | image_url: width: 2000 }}"
+        width="{{ featured_preview.width }}"
+        height="{{ featured_preview.height }}"
+        alt="{{ featured_preview.alt | default: product.title | escape }}"
+      >
+    {% endif %}
+  </dialog>
+</beauty-product-gallery>

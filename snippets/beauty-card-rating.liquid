@@ -1,0 +1,25 @@
+{% doc %}
+Star rating for a product card. Renders nothing unless the product actually
+carries review metafields — no placeholder scores.
+@param {product} product - Product to rate
+{% enddoc %}
+{%- liquid
+  assign rating = product.metafields.reviews.rating.value
+  assign count = product.metafields.reviews.rating_count.value | default: 0
+  assign scale_max = rating.scale_max | default: 5
+  assign percent = 0
+  if rating.rating != blank
+    assign percent = rating.rating | times: 100.0 | divided_by: scale_max | round
+  endif
+-%}
+{%- if rating.rating != blank -%}
+  <p class="beauty-card-rating">
+    <span
+      class="beauty-card-rating__stars"
+      style="--d-rating:{{ percent }}"
+      role="img"
+      aria-label="{{ 'beauty_cards.rating_label' | t: rating: rating.rating, max: scale_max }}"
+    ></span>
+    {%- if count > 0 -%}<span>({{ count }})</span>{%- endif -%}
+  </p>
+{%- endif -%}

@@ -1,0 +1,43 @@
+{{ 'beauty-home.css' | asset_url | stylesheet_tag }}
+{%- liquid
+  assign vendors = shop.vendors | sort_natural
+  assign limit = section.settings.limit | default: 12
+-%}
+{%- if vendors.size > 0 -%}
+  <section class="bh-wrap bh-brands-section" aria-labelledby="bh-brands-{{ section.id }}">
+    <header class="bh-heading">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="bh-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 id="bh-brands-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      </div>
+      {%- if section.settings.label != blank -%}
+        <div class="bh-controls">
+          <a href="{{ section.settings.link | default: routes.all_products_collection_url }}">
+            {{- section.settings.label | escape -}}
+          </a>
+        </div>
+      {%- endif -%}
+    </header>
+    <div class="bh-brands">
+      {%- for vendor in vendors limit: limit -%}
+        {{ vendor | link_to_vendor }}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Beauty brand strip",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our brands" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Top brands" },
+    { "type": "range", "id": "limit", "label": "Brands shown", "min": 4, "max": 24, "step": 2, "default": 12 },
+    { "type": "text", "id": "label", "label": "Link label", "default": "All brands" },
+    { "type": "url", "id": "link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Beauty brand strip" }]
+}
+{% endschema %}

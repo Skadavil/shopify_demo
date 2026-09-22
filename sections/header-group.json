@@ -8,12 +8,12 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "THE BEAUTY EDIT \u2014 Discover your next favourite",
+            "text": "FREE DELIVERY ON EVERY ORDER  \u00b7  FREE SAMPLES  \u00b7  30-DAY RETURNS",
             "link": "shopify://collections/all",
             "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
+            "font_size": "0.6875rem",
+            "weight": "600",
+            "letter_spacing": "0.08em",
             "case": "none",
             "text_color": "#ffffff"
           },
@@ -27,11 +27,11 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "#111111",
+        "background_color": "#000000",
         "divider_width": 0,
         "divider_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 7,
-        "padding-block-end": 7
+        "padding-block-start": 9,
+        "padding-block-end": 9
       }
     },
     "header_section": {
@@ -53,9 +53,9 @@
           "settings": {
             "menu": "main-menu",
             "background_color": "#ffffff",
-            "text_color": "#111111",
-            "type_font_primary_size": "0.75rem",
-            "menu_font_style": "regular",
+            "text_color": "#000000",
+            "type_font_primary_size": "0.8125rem",
+            "menu_font_style": "bold",
             "type_font_primary_link": "subheading",
             "type_case_primary_link": "uppercase",
             "menu_style": "featured_products",
@@ -75,37 +75,37 @@
       },
       "settings": {
         "logo_position": "center",
-        "menu_position": "center",
+        "menu_position": "left",
         "menu_row": "bottom",
         "customer_account_menu": "customer-account-main-menu",
         "show_search": true,
-        "search_position": "right",
+        "search_position": "left",
         "search_row": "top",
         "show_country": true,
         "country_selector_style": false,
         "show_language": true,
-        "localization_font": "heading",
-        "localization_font_size": "0.875rem",
-        "localization_position": "left",
+        "localization_font": "body",
+        "localization_font_size": "0.75rem",
+        "localization_position": "right",
         "localization_row": "top",
-        "section_width": "page-width",
+        "section_width": "full-width",
         "section_height": "standard",
         "enable_sticky_header": "always",
         "divider_width": 1,
-        "divider_size": "page-width",
-        "divider_color": "#eeeeee",
+        "divider_size": "full-width",
+        "divider_color": "#e2e2e2",
         "border_width": 1,
-        "bottom_border_color": "#eeeeee",
+        "bottom_border_color": "#e2e2e2",
         "actions_display_style": "icon",
-        "actions_font_size": "0.875rem",
+        "actions_font_size": "0.75rem",
         "actions_font": "body",
         "actions_text_case": "none",
         "background_color_top": "#ffffff",
-        "text_color_top": "#111111",
+        "text_color_top": "#000000",
         "background_color_bottom": "#ffffff",
-        "text_color_bottom": "#111111",
+        "text_color_bottom": "#000000",
         "bubble_style": "custom",
-        "bubble_background_color": "#111111",
+        "bubble_background_color": "#000000",
         "bubble_text_color": "#ffffff",
         "enable_transparent_header_home": false,
         "home_inverse_logo": false,
@@ -124,14 +124,14 @@
         "announcement_BxgCk9": {
           "type": "_announcement",
           "settings": {
-            "text": "Explore skincare, makeup & fragrance",
+            "text": "Skincare \u00b7 Make-up \u00b7 Hair \u00b7 Body \u00b7 Fragrance",
             "link": "shopify://collections/all",
             "font": "var(--font-subheading--family)",
             "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
+            "weight": "500",
+            "letter_spacing": "0.04em",
             "case": "none",
-            "text_color": "#111111"
+            "text_color": "#000000"
           },
           "blocks": {}
         }
@@ -143,11 +143,11 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "#fbefed",
+        "background_color": "#f9ecef",
         "divider_width": 0,
         "divider_color": "{{ settings.color_palette.color2 }}",
-        "padding-block-start": 6,
-        "padding-block-end": 6
+        "padding-block-start": 7,
+        "padding-block-end": 7
       }
     }
   },

@@ -1,0 +1,55 @@
+{{ 'beauty-home.css' | asset_url | stylesheet_tag }}
+<section class="bh-wrap bh-promo-section" aria-labelledby="bh-promo-{{ section.id }}">
+  {%- if section.settings.heading != blank -%}
+    <header class="bh-heading">
+      <h2 id="bh-promo-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    </header>
+  {%- endif -%}
+  <div class="bh-promo" style="--bh-promo-cols:{{ section.blocks.size | at_most: 4 | at_least: 1 }}">
+    {%- for block in section.blocks -%}
+      <a class="bh-promo__tile" href="{{ block.settings.link | default: routes.all_products_collection_url }}" {{ block.shopify_attributes }}>
+        <div class="bh-promo__media">
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '400,650,900', sizes: '(max-width: 749px) 100vw, 33vw' }}
+          {%- elsif block.settings.image_url != blank -%}
+            <img src="{{ block.settings.image_url }}" alt="{{ block.settings.heading | escape }}" width="900" height="675" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="bh-promo__body">
+          {%- if block.settings.kicker != blank -%}
+            <span class="bh-promo__kicker">{{ block.settings.kicker | escape }}</span>
+          {%- endif -%}
+          <h3>{{ block.settings.heading | escape }}</h3>
+          {%- if block.settings.body != blank -%}<p>{{ block.settings.body | escape }}</p>{%- endif -%}
+          <span class="bh-promo__cta">{{ block.settings.label | escape }}</span>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Beauty promo tiles",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Offers of the week" }
+  ],
+  "presets": [{ "name": "Beauty promo tiles" }],
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo tile",
+      "settings": [
+        { "type": "text", "id": "kicker", "label": "Label", "default": "Offer" },
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Save on skincare" },
+        { "type": "text", "id": "body", "label": "Description", "default": "Selected products, reduced for a limited time." },
+        { "type": "text", "id": "label", "label": "Call to action", "default": "Shop now" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "url", "id": "image_url", "label": "Fallback image URL" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ]
+}
+{% endschema %}

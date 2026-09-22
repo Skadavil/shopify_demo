@@ -1,75 +1,245 @@
+/* Beauty retail header: wordmark left, pill search, dense uppercase nav bar
+   with a full-width mega menu. Monochrome only. */
 
+.header {
+  font-family: var(--d-font, var(--font-body--family));
+}
 
+/* Wordmark ------------------------------------------------------ */
+
+.header .header-logo [data-testid="header-logo"] {
+  text-transform: uppercase;
+  letter-spacing: .34em;
+  font-weight: 700;
+  font-size: clamp(17px, 2.1vw, 28px);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.header .header-logo { max-width: 100%; }
+
+/* Top row ------------------------------------------------------- */
+
+@media screen and (min-width: 1100px) {
+  .header .header__row--top { padding-block: 18px; }
+
+  /* This theme puts a wide, always-visible search pill in the top row. */
+  .header .search-action:not(.search-action--hidden-on-menu) button {
+    width: clamp(200px, 20vw, 300px);
+    justify-content: space-between;
+    border: 1px solid var(--d-line-strong, #bdbdbd);
+    border-radius: 999px;
+    background: var(--d-surface, #f5f5f5);
+    padding: 12px 18px;
+    margin-inline-end: 16px;
+    transition: border-color .18s ease, background-color .18s ease;
+  }
+
+  .header .search-action:not(.search-action--hidden-on-menu) button:hover {
+    border-color: var(--d-ink, #000);
+    background: var(--d-paper, #fff);
+  }
+
+  .header .search-action:not(.search-action--hidden-on-menu) button > span:first-child {
+    display: inline;
+    font-family: var(--d-font, inherit);
+    font-style: normal;
+    font-size: 13px;
+    color: var(--d-muted, #595959);
+    letter-spacing: .01em;
+  }
+}
+
+@media screen and (max-width: 749px) {
   .header .header-logo [data-testid="header-logo"] {
-    text-transform: uppercase;
-    letter-spacing: .15em;
-    font-weight: 600;
-    font-size: clamp(18px, 2.4vw, 32px);
-    line-height: 1.2;
-    text-align: center;
-    overflow-wrap: anywhere;
+    font-size: clamp(14px, 4.2vw, 19px);
+    letter-spacing: .2em;
   }
-  .header .menu-list__link { letter-spacing: .055em; }
-  .header .header-logo { max-width: 100%; }
-  @media screen and (min-width: 1100px) {
-    .header .header__row--top { padding-block: 14px; }
-    .header .search-action:not(.search-action--hidden-on-menu) button {
-      width: 160px;
-      justify-content: space-between;
-      border-bottom: 1px solid currentColor;
-      border-radius: 0;
-      padding-inline: 0;
-      margin-inline-end: 12px;
-    }
-    .header .search-action:not(.search-action--hidden-on-menu) button > span:first-child {
-      display: inline;
-      font-family: Georgia, serif;
-      font-style: italic;
-      font-size: 15px;
-    }
-  }
-  @media screen and (max-width: 749px) {
-    .header .header-logo [data-testid="header-logo"] {
-      font-size: clamp(14px, 4vw, 20px);
-      letter-spacing: .06em;
-    }
-  }
+}
 
-.beauty-nav { width:100%; color:#111; }
-.beauty-nav__list { list-style:none; display:flex; align-items:center; justify-content:center; gap:30px; margin:0; padding:0; }
-.beauty-nav__list > li > a,.beauty-nav summary { display:block; padding:18px 0; font-size:12px; font-weight:600; letter-spacing:.055em; text-transform:uppercase; cursor:pointer; }
-.beauty-nav summary { list-style:none; }
-.beauty-nav summary::-webkit-details-marker { display:none; }
-.beauty-nav a { color:inherit; text-decoration:none; }
-.beauty-nav a:hover { text-decoration:underline; text-underline-offset:4px; }
-.beauty-nav :focus-visible { outline:2px solid #111; outline-offset:4px; }
-.beauty-nav__sale { color:#b32959; }
-.beauty-nav__panel { position:absolute; inset-inline:0; top:100%; padding:30px max(24px,calc((100vw - 1200px)/2)); background:#fff; border-block:1px solid #e8e8e8; box-shadow:0 12px 18px #0000000d; display:flex; gap:48px; z-index:30; max-height:65vh; overflow:auto; }
-.beauty-desktop { position:relative; width:100%; }
-.beauty-nav__panel h2 { font-size:22px; font-weight:500; margin:0 0 18px; }
-.beauty-nav__panel h3 { font-size:12px; text-transform:uppercase; letter-spacing:.06em; margin:0 0 14px; }
-.beauty-nav__panel ul { list-style:none; padding:0; margin:0; }
-.beauty-nav__panel li { margin:0 0 10px; font-size:14px; }
-.beauty-nav__intro { min-width:170px; }
-.beauty-nav__brands { display:block; }
-.beauty-nav__letters { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; }
-.beauty-nav__letter:not(:has(li)) { display:none; }
-.beauty-mobile__toggle > summary { list-style:none; padding:12px; cursor:pointer; }
-.beauty-mobile__toggle > summary::-webkit-details-marker { display:none; }
-.beauty-mobile__content { position:absolute; inset-inline:0; top:100%; background:white; padding:16px 24px; max-height:75dvh; overflow:auto; border-bottom:1px solid #ddd; box-shadow:0 12px 18px #0000000d; z-index:40; }
-.beauty-mobile .beauty-nav__list { display:block; }
-.beauty-mobile .beauty-nav__list > li { border-bottom:1px solid #eee; }
-.beauty-mobile .beauty-nav summary::after { content:'+'; float:right; }
-.beauty-mobile .beauty-nav details[open] > summary::after { content:'−'; }
-.beauty-mobile .beauty-nav__panel { position:static; display:block; padding:8px 12px 20px; border:0; box-shadow:none; max-height:none; }
-.beauty-mobile .beauty-nav__panel section { margin-top:20px; }
-.beauty-mobile .beauty-nav__letters { grid-template-columns:repeat(2,minmax(0,1fr)); }
-@media(min-width:750px) { .beauty-mobile { display:none; } }
-@media(max-width:749px) { .beauty-desktop { display:none; } }
-@media(min-width:750px) and (max-width:1000px) { .beauty-nav__list { gap:16px; } .beauty-nav__panel { gap:24px; } }
+/* Category bar -------------------------------------------------- */
 
-#header-component[data-menu-style=drawer] .beauty-mobile { display:block; }
-#header-component[data-menu-style=drawer] .beauty-desktop { display:none; }
+/* The base theme lays the row out as `left center right` and sizes the menu's
+   column `auto`, so an empty right column absorbs the slack and the categories
+   bunch up on the left. When the bottom row carries nothing but the menu, give
+   that column the whole width. The :not() guards keep the default layout if a
+   merchant moves search or localization down here. */
+#header-component
+  .header__row--bottom
+  .header__columns:not(:has(.header__column--center)):not(:has(.header__column--right)) {
+  grid-template-columns: 1fr;
+  grid-template-areas: 'left';
+}
 
-.beauty-nav { font-family:var(--font-body--family); }
-.beauty-nav__panel h2 { font-family:var(--font-body--family); font-size:20px; }
+#header-component .header__row--bottom .header__column--left { min-width: 0; }
+
+.beauty-nav {
+  width: 100%;
+  color: var(--d-ink, #000);
+  font-family: var(--d-font, var(--font-body--family));
+}
+
+.beauty-nav__list {
+  list-style: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(12px, 1.9vw, 28px);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.beauty-nav__list::-webkit-scrollbar { display: none; }
+
+.beauty-nav__list > li { display: flex; }
+
+.beauty-nav__list > li > a,
+.beauty-nav summary {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: border-color .15s ease;
+}
+
+.beauty-nav summary { list-style: none; }
+.beauty-nav summary::-webkit-details-marker { display: none; }
+.beauty-nav a { color: inherit; text-decoration: none; }
+
+.beauty-nav__list > li > a:hover,
+.beauty-nav summary:hover,
+.beauty-nav details[open] > summary {
+  border-bottom-color: var(--d-ink, #000);
+}
+
+.beauty-nav :focus-visible { outline: 2px solid var(--d-ink, #000); outline-offset: 2px; }
+
+/* The reference bar emphasises Sale with colour, which this palette rules out.
+   Weight carries it instead — a filled chip in a row of plain links reads as a
+   stray element rather than emphasis. */
+.beauty-nav__sale > a { font-weight: 700; }
+
+/* Mega menu ----------------------------------------------------- */
+
+.beauty-desktop { position: relative; width: 100%; }
+
+.beauty-nav__panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  padding: 34px max(var(--d-gutter, 24px), calc((100vw - var(--d-max, 1440px)) / 2)) 40px;
+  background: var(--d-paper, #fff);
+  border-top: 1px solid var(--d-line, #e2e2e2);
+  border-bottom: 1px solid var(--d-ink, #000);
+  box-shadow: 0 14px 22px rgba(0, 0, 0, .07);
+  display: flex;
+  gap: clamp(28px, 4vw, 64px);
+  z-index: 30;
+  max-height: 68vh;
+  overflow: auto;
+}
+
+.beauty-nav__panel h2 {
+  font: 700 15px/1.3 var(--d-font, inherit);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.beauty-nav__panel h3 {
+  font: 700 12px/1.3 var(--d-font, inherit);
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--d-line, #e2e2e2);
+}
+
+.beauty-nav__panel ul { list-style: none; padding: 0; margin: 0; }
+.beauty-nav__panel li { margin: 0 0 9px; font-size: 13px; line-height: 1.5; }
+.beauty-nav__panel li a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+.beauty-nav__intro {
+  min-width: 190px;
+  flex: 0 0 auto;
+  border-right: 1px solid var(--d-line, #e2e2e2);
+  padding-right: clamp(20px, 2.5vw, 40px);
+}
+
+.beauty-nav__intro > a {
+  display: inline-block;
+  font: 600 12px/1 var(--d-font, inherit);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--d-ink, #000);
+  padding-bottom: 4px;
+}
+
+.beauty-nav__brands { display: block; }
+
+.beauty-nav__letters {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.beauty-nav__letter:not(:has(li)) { display: none; }
+
+/* Drawer nav ---------------------------------------------------- */
+
+.beauty-mobile__toggle > summary { list-style: none; padding: 12px; cursor: pointer; }
+.beauty-mobile__toggle > summary::-webkit-details-marker { display: none; }
+
+.beauty-mobile__content {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  background: var(--d-paper, #fff);
+  padding: 8px 20px 24px;
+  max-height: 78dvh;
+  overflow: auto;
+  border-bottom: 1px solid var(--d-ink, #000);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, .08);
+  z-index: 40;
+}
+
+.beauty-mobile .beauty-nav__list { display: block; }
+.beauty-mobile .beauty-nav__list > li { display: block; border-bottom: 1px solid var(--d-line, #e2e2e2); }
+.beauty-mobile .beauty-nav__list > li > a,
+.beauty-mobile .beauty-nav summary { border-bottom: 0; padding: 16px 0; }
+.beauty-mobile .beauty-nav summary::after { content: '+'; float: right; font-weight: 400; }
+.beauty-mobile .beauty-nav details[open] > summary::after { content: '−'; }
+
+.beauty-mobile .beauty-nav__panel {
+  position: static;
+  display: block;
+  padding: 4px 0 20px;
+  border: 0;
+  box-shadow: none;
+  max-height: none;
+}
+
+.beauty-mobile .beauty-nav__intro { border-right: 0; padding-right: 0; }
+.beauty-mobile .beauty-nav__panel section { margin-top: 20px; }
+.beauty-mobile .beauty-nav__letters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (min-width: 750px) { .beauty-mobile { display: none; } }
+@media (max-width: 749px) { .beauty-desktop { display: none; } }
+@media (min-width: 750px) and (max-width: 1000px) {
+  /* The bar scrolls at this width, so distribute from the start instead. */
+  .beauty-nav__list { justify-content: flex-start; gap: 14px; }
+  .beauty-nav__list > li > a, .beauty-nav summary { font-size: 12px; }
+  .beauty-nav__panel { gap: 24px; }
+  .beauty-nav__letters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+#header-component[data-menu-style="drawer"] .beauty-mobile { display: block; }
+#header-component[data-menu-style="drawer"] .beauty-desktop { display: none; }
